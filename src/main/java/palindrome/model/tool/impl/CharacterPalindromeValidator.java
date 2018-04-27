@@ -1,9 +1,9 @@
 package palindrome.model.tool.impl;
 
-import palindrome.model.tool.PalindromValidator;
+import palindrome.model.tool.PalindromeValidator;
 
 
-public class CharacterPalindromValidator implements PalindromValidator {
+public class CharacterPalindromeValidator implements PalindromeValidator {
 
     @Override
     public boolean isValid(String sequence) {

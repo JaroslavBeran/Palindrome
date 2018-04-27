@@ -1,52 +1,79 @@
 package palindrome.model.tool.impl;
 
 import java.util.EnumMap;
-import palindrome.model.tool.PalindromNormalizer;
-import palindrome.model.tool.PalindromValidator;
+import palindrome.model.tool.PalindromeNormalizer;
+import palindrome.model.tool.PalindromeValidator;
 import palindrome.model.type.PalindromeType;
 
 
+/**
+ * Important tools to normalize, validate the input sentence by required palindrome type {@link PalindromeType}.
+ * 
+ * @author Jarda
+ *
+ */
 public class PalindromeToolProvider {
 
     private class ToolPair {
-        PalindromNormalizer normalizer;
-        PalindromValidator validator;
+        PalindromeNormalizer normalizer;
+        PalindromeValidator validator;
 
 
-        private ToolPair(PalindromNormalizer normalizer, PalindromValidator validator) {
+        private ToolPair(PalindromeNormalizer normalizer, PalindromeValidator validator) {
             this.normalizer = normalizer;
             this.validator = validator;
         }
 
     }
 
-    private EnumMap<PalindromeType, ToolPair> tools = new EnumMap<>(PalindromeType.class);
+    private final EnumMap<PalindromeType, ToolPair> tools = new EnumMap<>(PalindromeType.class);
 
 
+    /**
+     * Construct the provider.
+     */
     public PalindromeToolProvider() {
         tools.put(PalindromeType.CHARACTER,
-            new ToolPair(new CharacterPalindromNormalizer(), new CharacterPalindromValidator()));
+            new ToolPair(new CharacterPalindromeNormalizer(), new CharacterPalindromeValidator()));
         tools.put(PalindromeType.WORD,
-            new ToolPair(new WordPalindromNormalizer(), new WordPalindromValidator()));
+            new ToolPair(new WordPalindromeNormalizer(), new WordPalindromeValidator()));
     }
 
 
+    /**
+     * Normalize the input sequence <code>what</code> by required palindrome type <code>byType</code>.
+     * 
+     * @param what
+     *            input sequence is being normalized.
+     * @param byType
+     *            to normalize.
+     * @return normalized output sequence.
+     */
     public String normalize(String what, PalindromeType byType) {
         return getNormalizer(byType).normalize(what);
     }
 
 
-    private PalindromNormalizer getNormalizer(PalindromeType palindromType) {
+    private PalindromeNormalizer getNormalizer(PalindromeType palindromType) {
         return tools.get(palindromType).normalizer;
     }
 
 
+    /**
+     * Validates the input sequence.
+     * 
+     * @param what
+     *            input sequence is being validate.
+     * @param byType
+     *            by which type to validate.
+     * @return true if it is valid palindrome, otherwise false.
+     */
     public boolean validate(String what, PalindromeType byType) {
         return getValidator(byType).isValid(what);
     }
 
 
-    private PalindromValidator getValidator(PalindromeType palindromType) {
+    private PalindromeValidator getValidator(PalindromeType palindromType) {
         return tools.get(palindromType).validator;
     }
 

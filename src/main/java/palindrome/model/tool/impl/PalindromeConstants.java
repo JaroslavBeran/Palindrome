@@ -3,9 +3,9 @@ package palindrome.model.tool.impl;
 import java.util.regex.Pattern;
 
 
-final class PalindromConstants {
+final class PalindromeConstants {
 
-    private PalindromConstants() {
+    private PalindromeConstants() {
     }
 
     public static final String SP = " ";

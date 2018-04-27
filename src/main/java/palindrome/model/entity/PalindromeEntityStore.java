@@ -17,7 +17,7 @@ public class PalindromeEntityStore {
 
 
     public PalindromeEntityStore(PalindromeToolProvider toolProvider) {
-        Objects.requireNonNull(toolProvider, "Parameter toolProvider parameter cannot be null!");
+        Objects.requireNonNull(toolProvider, "Parameter 'toolProvider' cannot be null!");
         this.toolProvider = toolProvider;
         palindromes = new HashSet<>();
     }
@@ -32,7 +32,7 @@ public class PalindromeEntityStore {
      *             if the palindrome is already stored!
      */
     public void save(PalindromeEntity palindromeEntity) throws AlreadyExistingPalindromeException {
-        Objects.requireNonNull(palindromeEntity, "Parameter palindromEntity cannot be null!");
+        Objects.requireNonNull(palindromeEntity, "Parameter 'palindromEntity' cannot be null!");
 
         if (palindromes.contains(palindromeEntity)) {
             throw new AlreadyExistingPalindromeException(

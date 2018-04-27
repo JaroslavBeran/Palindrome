@@ -12,16 +12,19 @@ import palindrome.model.tool.impl.PalindromeToolProvider;
  */
 public class PalindromeModelFactory {
 
-    private PalindromeToolProvider toolProvider = new PalindromeToolProvider();
+    private final PalindromeToolProvider toolProvider = new PalindromeToolProvider();
 
     public enum PalindromeModelType {
         /**
-         * Using entity structure.
+         * Using the entity structure.
          */
         ENTITY,
 
         /**
-         * Store just the valid palindrome only.
+         * Store just the valid palindrome.<br/>
+         * It always does:
+         * <li>the normalization of stored sequence to be able to check if the new sequence is already stored or not.
+         * <li>the detection of the type
          */
         DIRECT
     };
@@ -45,11 +48,17 @@ public class PalindromeModelFactory {
 
 
     /**
-     * Creates the model which handles the palindrome save or list methods.
+     * Creates the model which handles the methods for:
+     * <li>palindrome save, or
+     * <li>palindrome listing.
      * 
      * @param type
-     *            use only one of these available values: <code>ENTITY</code> or <code>DIRECT</code>
-     * @return the model which handle save, filter requests.
+     *            use only one of these available values: <code>ENTITY</code> or <code>DIRECT</code>.
+     * @return the model.
+     * @throws IllegalArgumentException
+     *             if the type is not the string corresponding to one of these {@link PalindromeModelType}
+     * @throws NullPointerException
+     *             if the type is <code>null</code>
      */
     public PalindromeModel create(String type) {
         return create(PalindromeModelType.valueOf(type));

@@ -6,13 +6,19 @@ import palindrome.model.tool.impl.PalindromeToolProvider;
 import palindrome.model.type.PalindromeType;
 
 
+/**
+ * Factory creating the palindrome entity class {@link PalindromeEntity}.
+ * 
+ * @author Jarda
+ *
+ */
 public class PalindromeEntityFactory {
 
     private final PalindromeToolProvider toolProvider;
 
 
     public PalindromeEntityFactory(PalindromeToolProvider toolProvider) {
-        Objects.requireNonNull(toolProvider, "Parameter toolProvider parameter cannot be null!");
+        Objects.requireNonNull(toolProvider, "Parameter toolProvider cannot be null!");
         this.toolProvider = toolProvider;
     }
 
@@ -27,7 +33,7 @@ public class PalindromeEntityFactory {
             }
         }
 
-        throw new InvalidPalindromeException("The palindrome '" + palindrome + "' is not a valid palindrome!");
+        throw new InvalidPalindromeException("The palindrome is not a valid: " + palindrome);
     }
 
 }

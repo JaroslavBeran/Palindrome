@@ -50,7 +50,7 @@ public interface PalindromeModel {
      * </ol>
      * 
      * @param palindrome
-     *            to be stored. MUST NOT be <code>null</code>!
+     *            to be stored. MUST NOT be <code>null</code>, otherwise the {@link NullPointerException} is thrown.
      * @throws InvalidPalindromeException
      *             if the palindrome is not valid palindrome.
      * @throws AlreadyExistingPalindromeException

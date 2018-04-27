@@ -1,6 +1,6 @@
 package palindrome.model.tool.impl;
 
-public class WordPalindromNormalizer extends CommonPalindromNormalizer {
+public class WordPalindromeNormalizer extends CommonPalindromeNormalizer {
 
     @Override
     public String normalize(String sequence) {
