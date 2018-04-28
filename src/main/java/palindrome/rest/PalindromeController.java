@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import palindrome.model.PalindromeModel;
 import palindrome.model.PalindromeModelFactory;
+import palindrome.model.PalindromeModelFactory.PalindromeModelType;
 import palindrome.model.exception.AlreadyExistingPalindromeException;
 import palindrome.model.exception.InvalidPalindromeException;
 import palindrome.rest.json.FilterResponse;
@@ -22,8 +23,9 @@ public class PalindromeController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PalindromeController.class);
 
+    // application cmdline option: --palindrome.model.type=ENTITY
     @Value("${palindrome.model.type}")
-    public String palindromeModelType;
+    public PalindromeModelType palindromeModelType = PalindromeModelFactory.PalindromeModelType.ENTITY;
 
     private PalindromeModel palindromeModel;
 
