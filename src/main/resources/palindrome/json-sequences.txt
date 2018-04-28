@@ -1,0 +1,26 @@
+{\"sequence\" : \"Don't nod.\"}
+{\"sequence\" : \"I did, did I?\"}
+{\"sequence\" : \"My gym.\"}
+{\"sequence\" : \"Red rum, sir, is murder\"}
+{\"sequence\" : \"Step on no pets.\"}
+{\"sequence\" : \"Top spot.\"}
+{\"sequence\" : \"Was it a cat I saw?\"}
+{\"sequence\" : \"Eva, can I see bees in a cave?\"}
+{\"sequence\" : \"No lemon, no melon.\"}
+{\"sequence\" : \"Madam I'm Adam.\"}
+{\"sequence\" : \"First ladies rule the State and state the rule: ladies first.\"}
+{\"sequence\" : \"Able was I, ere I saw Elba.\"}
+{\"sequence\" : \"Sit on a potato pan, Otis.\"}
+{\"sequence\" : \"31913\"}
+{\"sequence\" : \"12345678 9 87654321\"}
+{\"sequence\" : \"Jelenovi pivo nelej!\"}
+{\"sequence\" : \"V elipse spí lev.\"}
+{\"sequence\" : \"A dál vidí lítat netopýry potentát i lid i vláda.\"}
+{\"sequence\" : \"Fešná paní volá: má málo vína pan šéf?\"}
+{\"sequence\" : \"Nevypusť supy ven.\"}
+{\"sequence\" : \"Signa te, signa, temere me tangis et angis.\"}
+{\"sequence\" : \"Zeman nemá kámen na mez.\"}
+{\"sequence\" : \"Kobyla má malý bok.\"}
+{\"sequence\" : \"Kuna nese nanuk.\"}
+{\"sequence\" : \"U dubu budu mít rád dar, tím u dubu budu.\"}
+{\"sequence\" : \"Celkem jednu sovu sám pan Knap má, sůvo sundejme klec.\"}
