@@ -38,6 +38,8 @@ abstract class CommonPalindromeNormalizer implements PalindromeNormalizer {
     protected final Function<String, String> toLowerCase = str -> str.toLowerCase();
 
     /**
+     * Applies: {@link #replacePunct}, {@link #removeDiacritical}, {@link #replaceSpace}, {@link #replaceSpaces},
+     * {@link #toLowerCase} functions.
      */
     protected final Function<String, String> basicNormalizer = replacePunct
         .andThen(removeDiacritical)
@@ -46,7 +48,7 @@ abstract class CommonPalindromeNormalizer implements PalindromeNormalizer {
         .andThen(toLowerCase);
 
     /**
-     * Remove all spaces.
+     * Remove all remaining spaces.
      */
     protected final Function<String, String> removeSpaces = str -> PalindromeConstants.SPACE_PATTERN.matcher(str)
         .replaceAll(PalindromeConstants.EMPTY);
