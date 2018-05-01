@@ -38,7 +38,7 @@ public class PalindromeController {
     }
 
 
-    @RequestMapping(path = "save")
+    @RequestMapping(path = "/save")
     public SaveResponse save(@RequestBody SaveRequest request) {
 
         try {
@@ -55,7 +55,7 @@ public class PalindromeController {
     }
 
 
-    @RequestMapping(path = "filter")
+    @RequestMapping(path = "/filter")
     public FilterResponse filter(@RequestBody PalindromeFilterRequest palindromeFilterRequest) {
         LOGGER.info("Request: filter, parameter sequence={}", palindromeFilterRequest.getSequence());
         return new FilterResponse(palindromeModel.getPalindromes(palindromeFilterRequest.getSequence()));
