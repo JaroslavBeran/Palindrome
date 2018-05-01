@@ -37,12 +37,8 @@ public class PalindromeEntityTest {
         assertNotEquals(pe1, pe2); // Different palindrome type
         assertNotEquals(pe1, pe3); // Different normalized sequence
         assertEquals(pe1, pe4); // Equals
+
+        assertEquals(pe1.hashCode(), pe4.hashCode()); // check hashcodes
     }
 
-
-    @Test
-    public void testHashCode() {
-        PalindromeEntity pe1 = new PalindromeEntity(PalindromeType.CHARACTER, "Asdf", "asdf");
-        assertEquals(1817839568, pe1.hashCode());
-    }
 }
