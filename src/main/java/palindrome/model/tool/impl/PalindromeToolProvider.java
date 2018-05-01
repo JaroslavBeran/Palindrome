@@ -1,6 +1,7 @@
 package palindrome.model.tool.impl;
 
 import java.util.EnumMap;
+import java.util.Objects;
 import palindrome.model.tool.PalindromeNormalizer;
 import palindrome.model.tool.PalindromeValidator;
 import palindrome.model.type.PalindromeType;
@@ -44,12 +45,15 @@ public class PalindromeToolProvider {
      * Normalize the input sequence <code>what</code> by required palindrome type <code>byType</code>.
      * 
      * @param what
-     *            input sequence is being normalized.
+     *            input sequence is being normalized. MUST NOT be <code>null</code>.
      * @param byType
-     *            to normalize.
+     *            to normalize. MUST NOT be <code>null</code>.
      * @return normalized output sequence.
      */
     public String normalize(String what, PalindromeType byType) {
+        Objects.requireNonNull(what, "Parameter what must not be null!");
+        Objects.requireNonNull(byType, "Parameter byType must not be null!");
+
         return getNormalizer(byType).normalize(what);
     }
 
@@ -60,15 +64,18 @@ public class PalindromeToolProvider {
 
 
     /**
-     * Validates the input sequence.
+     * Check if the input sequence is valid.
      * 
      * @param what
-     *            input sequence is being validate.
+     *            input sequence is being validate. MUST NOT be <code>null</code>.
      * @param byType
-     *            by which type to validate.
-     * @return true if it is valid palindrome, otherwise false.
+     *            by which type to validate. MUST NOT be <code>null</code>.
+     * @return true if the 'what' is valid palindrome, otherwise false.
      */
-    public boolean validate(String what, PalindromeType byType) {
+    public boolean isValid(String what, PalindromeType byType) {
+        Objects.requireNonNull(what, "Parameter what must not be null!");
+        Objects.requireNonNull(byType, "Parameter byType must not be null!");
+
         return getValidator(byType).isValid(what);
     }
 

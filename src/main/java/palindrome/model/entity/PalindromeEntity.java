@@ -1,5 +1,6 @@
 package palindrome.model.entity;
 
+import java.util.Objects;
 import palindrome.model.type.PalindromeType;
 
 
@@ -28,15 +29,19 @@ public class PalindromeEntity {
      * Constructor.
      * 
      * @param palindromeType
-     *            is type of the palindrome.
+     *            is type of the palindrome. MUST NOT be <code>null</code>.
      * @param originalPalindrome
-     *            is original palindrome string sequence.
+     *            is original palindrome string sequence. MUST NOT be <code>null</code>.
      * @param normalizedPalindrome
-     *            is normalized palindrome string sequence according to the type.
+     *            is normalized palindrome string sequence according to the type. MUST NOT be <code>null</code>.
      */
     public PalindromeEntity(PalindromeType palindromeType,
                             String originalPalindrome,
                             String normalizedPalindrome) {
+        Objects.requireNonNull(palindromeType, "Parameter palindromeType can not be null!");
+        Objects.requireNonNull(originalPalindrome, "Parameter originalPalindrome can not be null!");
+        Objects.requireNonNull(normalizedPalindrome, "Parameter normalizedPalindrome can not be null!");
+
         this.palindromeType = palindromeType;
         this.normalizedPalindrome = normalizedPalindrome;
         this.originalPalindrome = originalPalindrome;
@@ -74,8 +79,8 @@ public class PalindromeEntity {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((normalizedPalindrome == null) ? 0 : normalizedPalindrome.hashCode());
-        result = prime * result + ((palindromeType == null) ? 0 : palindromeType.hashCode());
+        result = prime * result + normalizedPalindrome.hashCode();
+        result = prime * result + palindromeType.hashCode();
         return result;
     }
 
@@ -98,11 +103,7 @@ public class PalindromeEntity {
         if (palindromeType != other.palindromeType) {
             return false;
         }
-        if (normalizedPalindrome == null) {
-            if (other.normalizedPalindrome != null) {
-                return false;
-            }
-        } else if (!normalizedPalindrome.equals(other.normalizedPalindrome)) {
+        if (!normalizedPalindrome.equals(other.normalizedPalindrome)) {
             return false;
         }
         return true;

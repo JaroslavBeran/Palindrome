@@ -14,7 +14,8 @@ public interface PalindromeValidator {
      * backward as forward without any disturbing characters.
      * 
      * @param sequence
-     *            input sequence to be validated. Should be already normalized palindrome string.
+     *            input sequence to be validated. Should be already normalized palindrome string. MUST NOT be
+     *            <code>null</code>.
      * @return true if it is correct palindrome, otherwise false.
      */
     boolean isValid(String sequence);

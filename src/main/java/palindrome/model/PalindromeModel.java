@@ -6,7 +6,7 @@ import palindrome.model.exception.InvalidPalindromeException;
 
 
 /**
- * Palindrome model which handles adding of new palindrome and listing/filtering of already saved palindrome.
+ * Palindrome model which handles adding of new palindrome and listing/filtering of already saved palindromes.
  * 
  * @author Jarda
  *
@@ -61,10 +61,13 @@ public interface PalindromeModel {
 
     /**
      * Gets the list of all saved palindromes or filtered only. The string sequence of each palindrome is not modified.
+     * <p>
+     * The diacritical is ignored during filtering.
      * 
      * @param filter
-     *            substring filter
-     * @return the list of valid palindromes
+     *            substring or whole palindrome sequence of the required palindrome(s). If it is <code>null</code> or
+     *            empty all palindromes are returned.
+     * @return the list of valid palindromes. If there is no palindrome which matching the filter the list is empty.
      */
     List<String> getPalindromes(String filter);
 

@@ -48,9 +48,7 @@ public class PalindromeModelFactory {
 
 
     /**
-     * Creates the model which handles the methods for:
-     * <li>palindrome save, or
-     * <li>palindrome listing.
+     * Creates the {@link PalindromeModel} model according to string type.
      * 
      * @param type
      *            use only one of these available values: <code>ENTITY</code> or <code>DIRECT</code>.
@@ -60,7 +58,7 @@ public class PalindromeModelFactory {
      * @throws NullPointerException
      *             if the type is <code>null</code>
      */
-    public PalindromeModel create(String type) {
+    public PalindromeModel createBy(String type) {
         return create(PalindromeModelType.valueOf(type));
     }
 }

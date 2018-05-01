@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import palindrome.model.exception.AlreadyExistingPalindromeException;
 import palindrome.model.exception.InvalidPalindromeException;
@@ -25,40 +26,78 @@ class PalindromeDirectModel implements PalindromeModel {
     }
 
 
-    @Override
-    public void save(String palindrome) throws AlreadyExistingPalindromeException, InvalidPalindromeException {
-        Objects.requireNonNull(palindrome, "Palindrome parameter cannot be null!");
-
-        // TODO: complete the functionality!
-        if (!palindromes.isEmpty() && palindromes.stream().noneMatch(p -> true)) {
-            throw new AlreadyExistingPalindromeException("The palindrome '" + palindrome + "' is not a palindrome!");
+    /**
+     * Normalize and validate. If it is not palindrome the exception is thrown.
+     * 
+     * @param sequence
+     *            to be normalized and validate.
+     * @return normalized palindrome sequence
+     * @throws InvalidPalindromeException
+     */
+    private String normalizeAndValidateException(String sequence) throws InvalidPalindromeException {
+        String normalizedAndValidated = normalizeAndValidate(sequence);
+        if (normalizedAndValidated == null) {
+            throw new InvalidPalindromeException("The palindrome '" + sequence + "' is not a palindrome!");
         }
+        return normalizedAndValidated;
+    }
 
+
+    /**
+     * Normalize and validate the input sequence. If there is no way how to normalize and validate the null is returend.
+     * 
+     * @param sequence
+     *            to be normalized and validated.
+     * @return the normalized sequence, or <code>null</code> if it is not possible.
+     */
+    private String normalizeAndValidate(String sequence) {
         for (PalindromeType palindromeType : PalindromeType.values()) {
-            String normalizedPalindrome = toolProvider.normalize(palindrome, palindromeType);
-            if (toolProvider.validate(normalizedPalindrome, palindromeType)) {
-                palindromes.add(palindrome);
-                return;
+            String normalizedPalindrome = toolProvider.normalize(sequence, palindromeType);
+            if (toolProvider.isValid(normalizedPalindrome, palindromeType)) {
+                return normalizedPalindrome;
             }
         }
+        return null;
+    }
 
-        throw new InvalidPalindromeException("The palindrome '" + palindrome + "' is not a palindrome!");
+
+    @Override
+    public void save(String palindrome) throws AlreadyExistingPalindromeException, InvalidPalindromeException {
+        Objects.requireNonNull(palindrome, "Parameter palindrome cannot be null!");
+
+        String normalizedPalindrome = normalizeAndValidateException(palindrome);
+
+        // Does the palindrome already exist?
+        if (palindromes.stream().anyMatch(p -> normalizeAndValidate(p).equals(normalizedPalindrome))) {
+            throw new AlreadyExistingPalindromeException("The palindrome '" + palindrome + "' already exists!");
+        }
+
+        palindromes.add(palindrome);
+    }
+
+
+    private Predicate<String> getFilter(String filter) {
+        if (filter == null) {
+            return p -> true;
+        }
+
+        return p -> {
+            for (PalindromeType palindromType : PalindromeType.values()) {
+                String normalizedPalindrom = toolProvider.normalize(p, palindromType);
+                String normalizedFilter = toolProvider.normalize(filter, palindromType);
+                if (normalizedPalindrom.contains(normalizedFilter)) {
+                    return true;
+                }
+            }
+            return false;
+        };
     }
 
 
     @Override
     public List<String> getPalindromes(String filter) {
         return palindromes.stream()
-            .filter(p -> {
-                for (PalindromeType palindromType : PalindromeType.values()) {
-                    String normalizedPalindrom = toolProvider.normalize(p, palindromType);
-                    String normalizedFilter = toolProvider.normalize(p, palindromType);
-                    if (normalizedPalindrom.contains(normalizedFilter)) {
-                        return true;
-                    }
-                }
-                return false;
-            })
+            .filter(getFilter(filter))
             .collect(Collectors.toList());
     }
 

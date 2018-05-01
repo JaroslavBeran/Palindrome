@@ -1,5 +1,6 @@
 package palindrome.model.tool.impl;
 
+import java.util.Objects;
 import palindrome.model.tool.PalindromeValidator;
 
 
@@ -14,6 +15,8 @@ public class CharacterPalindromeValidator implements PalindromeValidator {
 
     @Override
     public boolean isValid(String sequence) {
+        Objects.requireNonNull(sequence, "Parameter sequence must not be null!");
+
         // Create reversed token
         String reverseTmp = new StringBuilder(sequence).reverse().toString();
 

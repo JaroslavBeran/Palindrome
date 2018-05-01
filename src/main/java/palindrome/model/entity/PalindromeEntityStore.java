@@ -44,7 +44,7 @@ public class PalindromeEntityStore {
 
 
     private Predicate<PalindromeEntity> getFilterPredicate(String filter) {
-        if (filter == null) {
+        if (filter == null || filter.isEmpty()) {
             return p -> true;
         }
         return p -> p.getNormalizedPalindrome()
@@ -56,7 +56,7 @@ public class PalindromeEntityStore {
      * Request for required palindrome(s).
      * 
      * @param filter
-     *            substring of required palindrome. If it is <code>null</code> all palindromes are returned.
+     *            substring of required palindrome. If it is <code>null</code> or is empty all palindromes are returned.
      * @return list of either all or filtered {@link PalindromeEntity}s. Can be empty list if no
      *         {@link PalindromeEntity} match the filter. <code>null</code> is not ever returned!
      */

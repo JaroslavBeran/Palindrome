@@ -28,7 +28,7 @@ public class PalindromeEntityFactory {
 
         for (PalindromeType type : PalindromeType.values()) {
             String normalizedPalindrome = toolProvider.normalize(palindrome, type);
-            if (toolProvider.validate(normalizedPalindrome, type)) {
+            if (toolProvider.isValid(normalizedPalindrome, type)) {
                 return new PalindromeEntity(type, palindrome, normalizedPalindrome);
             }
         }

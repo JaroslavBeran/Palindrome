@@ -14,7 +14,7 @@ public interface PalindromeNormalizer {
      * Just normalize the input sequence. Remove unimportant characters, do lower/upper case etc.
      * 
      * @param sequence
-     *            to be normalizes
+     *            to be normalizes. MUST NOT be <code>null</code>.
      * @return already normalized output sequence.
      */
     String normalize(String sequence);
