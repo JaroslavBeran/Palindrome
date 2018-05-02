@@ -1,7 +1,11 @@
 package palindrome.model;
 
 import static org.junit.Assert.assertEquals;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestRule;
+import com.carrotsearch.junitbenchmarks.BenchmarkOptions;
+import com.carrotsearch.junitbenchmarks.BenchmarkRule;
 import palindrome.TestPalindromes;
 import palindrome.TestPalindromes.TestPalindrome;
 import palindrome.model.exception.AlreadyExistingPalindromeException;
@@ -10,15 +14,20 @@ import palindrome.model.exception.InvalidPalindromeException;
 
 public abstract class PalindromeModelTestable {
 
+    @Rule
+    public TestRule benchmarkRun = new BenchmarkRule();
+
     protected PalindromeModel model;
 
 
+    @BenchmarkOptions(benchmarkRounds = 1, warmupRounds = 0)
     @Test(expected = InvalidPalindromeException.class)
     public void testSave_Exception() throws InvalidPalindromeException, AlreadyExistingPalindromeException {
         model.save(TestPalindromes.INVALID_PALINDROM_1);
     }
 
 
+    @BenchmarkOptions(benchmarkRounds = 1, warmupRounds = 0)
     @Test(expected = AlreadyExistingPalindromeException.class)
     public void testSave() throws InvalidPalindromeException, AlreadyExistingPalindromeException {
         model.save(TestPalindromes.VALID_PALINDROM_1);
@@ -26,6 +35,7 @@ public abstract class PalindromeModelTestable {
     }
 
 
+    @BenchmarkOptions(benchmarkRounds = 10000, warmupRounds = 5)
     @Test
     public void testGetAll() throws InvalidPalindromeException, AlreadyExistingPalindromeException {
         for (TestPalindrome palindrome : TestPalindrome.values()) {
