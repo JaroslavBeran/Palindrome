@@ -12,6 +12,13 @@ import palindrome.model.tool.impl.PalindromeToolProvider;
 import palindrome.model.type.PalindromeType;
 
 
+/**
+ * This implementation uses just the {@link Set} to store the original palindrome only. This implementation reduces
+ * memory consumptions, but it increases time consumptions due to palindromes checking (normalize).
+ * 
+ * @author Jarda
+ *
+ */
 class PalindromeDirectModel implements PalindromeModel {
 
     private final Set<String> palindromes;
@@ -44,7 +51,8 @@ class PalindromeDirectModel implements PalindromeModel {
 
 
     /**
-     * Normalize and validate the input sequence. If there is no way how to normalize and validate the null is returend.
+     * Normalize and validate the input sequence. If there is no way how to normalize and validate the <code>null</code>
+     * is returned.
      * 
      * @param sequence
      *            to be normalized and validated.
@@ -77,7 +85,8 @@ class PalindromeDirectModel implements PalindromeModel {
 
 
     private Predicate<String> getFilter(String filter) {
-        if (filter == null) {
+        if (filter == null || filter.isEmpty()) {
+            // It is much quicker to decide true if the filter is empty, than check it by 'contains' ... see below
             return p -> true;
         }
 
